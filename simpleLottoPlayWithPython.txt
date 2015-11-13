@@ -1,0 +1,32 @@
+# We are creating a simple LOTTO play. We can guess 5 numbers.
+
+import random
+# Let's fill a list with lotto numbers. Range from 1 to naxNumber
+def lottoNumbers(maxNum):
+    list = []                   # Create an empty list
+    for i in range(1, maxNum+1):
+        list.append(i)          # add item to list
+    return list                 # lottoNumbers function return a list
+
+# main program
+if __name__ == "__main__":
+    # *** tippelt szamok ***
+    tip_lst = raw_input('Enter your lotto numbers (5 number):  ')   # Reads a line from input
+    tip_lst = eval(tip_lst) # ---> e.g.:(1, 2, 3, 4, 5)
+    print "Tip numbers: " + str(tip_lst)
+
+
+    lottolist = lottoNumbers(90)
+    selectedList = []               # Create an empty list
+    # ***** sorsolas *****
+    for x in range(1,6):        # for -> range from 1 to 5
+        randNum = random.choice(lottolist)  # Return a random element from lottolist
+        selectedList.append(randNum)        # add selected number to selectedList
+        lottolist.remove(randNum)           # remove the selected number from the lottolist
+
+    print "Winning numbers: " + str(selectedList)
+
+
+    resourceList = list(set(selectedList).intersection(set(tip_lst)))   # Intersection of two lists (selectedList, lst)
+
+    print resourceList  # print hit numbers
